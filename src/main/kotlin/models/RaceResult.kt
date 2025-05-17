@@ -1,8 +1,9 @@
 package org.example.models
 
-class RaceResult(resultId: Int, raceId: Int, driverId: Int, grid: Int, position: Int?) : SerializedF1Entity(resultId) {
+class RaceResult(resultId: Int, val raceId: Int, val driverId: Int, val grid: Int, val position: Int?) :
+    SerializedF1Entity(resultId) {
     companion object {
-        fun from(line : String) : RaceResult{
+        fun from(line: String): RaceResult {
             val values = line.split(",")
             val position = if (values[6].equals("\\N")) null
             else values[6].toInt()
@@ -11,6 +12,6 @@ class RaceResult(resultId: Int, raceId: Int, driverId: Int, grid: Int, position:
     }
 
     override fun additionalFields(): String {
-        TODO("Not yet implemented")
+        return "raceId: $raceId - driverId: $driverId - grid: $grid - position: $position"
     }
 }

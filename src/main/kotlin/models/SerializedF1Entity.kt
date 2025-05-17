@@ -3,12 +3,12 @@ package org.example.models
 abstract class SerializedF1Entity(val getEntityId: Int) {
     abstract fun additionalFields(): String
 
-    private fun getClassName() : String {
+    fun getType() : String {
         return this::class.java.simpleName;
     }
 
     fun getEntityKey() : String {
-        return "$getEntityId-${getClassName()}"
+        return "$getEntityId-${getType()}"
     }
 
     override fun toString() : String {
