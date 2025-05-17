@@ -12,7 +12,7 @@ fun main() {
 
     val theRace = entityStore.get(33, RaceResult::class.java)
     val driver = entityStore.get(42, Driver::class.java)
-
+ 
     println(theRace)
     println(driver)
 }
