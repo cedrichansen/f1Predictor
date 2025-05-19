@@ -8,12 +8,7 @@ class Race(raceId: Int, val circuitId : Int, var results: List<RaceResult >) : S
         }
     }
 
-    override fun additionalFields(): String {
-        return "CircuitId - {$circuitId}"
-    }
-
     fun addRaceResults(raceResults: List<RaceResult>)  {
         results = raceResults
     }
-
 }

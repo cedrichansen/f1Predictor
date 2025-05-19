@@ -10,8 +10,4 @@ class RaceResult(resultId: Int, val raceId: Int, val driverId: Int, val grid: In
             return RaceResult(values[0].toInt(), values[1].toInt(), values[2].toInt(), values[5].toInt(), position)
         }
     }
-
-    override fun additionalFields(): String {
-        return "raceId: $raceId - driverId: $driverId - grid: $grid - position: $position"
-    }
 }

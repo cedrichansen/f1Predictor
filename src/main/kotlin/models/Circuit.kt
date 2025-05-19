@@ -7,8 +7,4 @@ class Circuit (circuitId : Int, val circuitName: String): SerializedF1Entity(cir
             return Circuit(values[0].toInt(), values[1].replace("\"", ""))
         }
     }
-
-    override fun additionalFields(): String {
-        return "circuitName: $circuitName"
-    }
 }

@@ -12,10 +12,10 @@ class SerializedF1EntityStore(val data: Map<String, Map<Int, SerializedF1Entity>
     }
 
     companion object {
-        fun fromList(entities: List<SerializedF1Entity>) : SerializedF1EntityStore {
+        fun fromList(entities: List<SerializedF1Entity>): SerializedF1EntityStore {
             var map = mutableMapOf<String, MutableMap<Int, SerializedF1Entity>>()
             entities.forEach {
-                val entityId = it.getEntityId
+                val entityId = it.entityId
                 val entityType = it.getType()
                 map.putIfAbsent(entityType, mutableMapOf<Int, SerializedF1Entity>())
                 map.get(entityType)?.put(entityId, it)
@@ -24,11 +24,15 @@ class SerializedF1EntityStore(val data: Map<String, Map<Int, SerializedF1Entity>
         }
     }
 
-    fun <T : SerializedF1Entity> get(id : Int, clazz: Class<T>) : T? {
+    fun <T : SerializedF1Entity> getAllOfType(clazz: Class<T>): Map<Int, T>? {
         val entityType = clazz.simpleName
-        return data.get(entityType)?.get(id) as T
+        return data[entityType] as Map<Int, T>
     }
 
+    fun <T : SerializedF1Entity> get(id: Int, clazz: Class<T>): T? {
+        val entitiesForType = getAllOfType(clazz)
+        return entitiesForType?.get(id)
+    }
 
     private fun associateRaceResultsToRace() {
         //RaceId - > List<RaceResult>
